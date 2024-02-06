@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <?php
+    <title>AnimalCommerce</title>
 
-    require_once("product.php");
-    require_once("card.php");
-    ?>
+    <?php require_once(__DIR__ . "/db.php"); ?>
 </head>
+
 <body>
-    <div>
+
+    <ul>
         <?php
-        
+        foreach ($prods as $prod) {
+
+            ?>
+
+            <li>
+                <h3>
+                    <?php
+                    echo $prod->getTypology();
+                    ?>
+                </h3>
+                <?php
+                echo $prod->getTitle();
+                ?>:
+                <?php
+                echo $prod->getPrice();
+                ?>
+                Euro
+                <br>
+                <img src="<?php echo $prod->getImage() ?>" width="100" />
+                <br>
+                Category:
+                <img src="<?php echo $prod->getCategory()->getIcon() ?>" width="30" />
+                <?php
+                echo $prod->getCategory()->getName();
+                ?>
+            </li>
+
+            <?php
+        }
         ?>
-    </div>
+    </ul>
 </body>
+
 </html>
